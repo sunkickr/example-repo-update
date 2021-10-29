@@ -63,7 +63,7 @@ def _get_activity(day_name) -> str:
     catchup=False,
     tags=["example"],
 )
-def example_registry_dag():
+def example_dag_advanced():
     begin = DummyOperator(task_id="begin")
     end = DummyOperator(task_id="end", trigger_rule=TriggerRule.NONE_FAILED)
 
@@ -136,4 +136,4 @@ def example_registry_dag():
     # Task dependency created by XComArgs:
     #   going_to_the_beach >> inviting_friends
 
-dag = example_registry_dag()
+dag = example_dag_advanced()
