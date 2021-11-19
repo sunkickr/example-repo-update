@@ -1,0 +1,16 @@
+version: "2"
+services:
+  test:
+    image: example-repo-update_e4e3a9/airflow:latest
+    command: >
+      bash -c "pytest"
+    user: astro
+    environment:
+      AIRFLOW__CORE__LOAD_EXAMPLES: "False"
+      ASTRONOMER_ENVIRONMENT: local
+    volumes:
+      - ~/example-repo-update/dags:/usr/local/airflow/dags:ro
+      - ~/example-repo-update/plugins:/usr/local/airflow/plugins:z
+      - ~/example-repo-update/include:/usr/local/airflow/include:z
+      - ~/example-repo-update/tests:/usr/local/airflow/tests:z
+

@@ -52,7 +52,7 @@ def _get_activity(day_name) -> str:
 # When using the DAG decorator, the ``dag`` argument doesn't need to be specified for each task.
 # The ``dag_id`` value defaults to the name of the function it is decorating.
 @dag(
-    start_date=datetime(2021, 6, 11),  # Best practice is to use a static start_date.
+    start_date=datetime(2021, 6, 11),  # Best practice is to use a static start_date. 
     max_active_runs=1,
     schedule_interval="@daily",
     # Default settings applied to all tasks within the DAG; can be overwritten at the task level.
