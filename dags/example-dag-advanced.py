@@ -15,9 +15,12 @@ from airflow.utils.weekday import WeekDay
 
 
 """
-This DAG is intended to be a demonstration of a number of core Airflow concepts related to pipeline authoring including TaskFlow API, branching, Edge Labels, Jinja templating, dynamic task generation, Task Groups, and Trigger Rules.
-
-
+This DAG is intended to be a demonstration of a number of core Airflow concepts 
+related to pipeline authoring including TaskFlow API, branching, Edge Labels, 
+Jinja templating, dynamic task generation, Task Groups, and Trigger Rules.
+First this DAG checks if the current day is a weekday or weekend. Next the DAG
+checks which day in the week it is. Lastly the DAG prints out a statement to bash
+based on which day it is. For example on Tuesday the DAG prints "Its Tuesday and Im busy with studying"
 """
 
 # Reference data for determining the activity to perform per day of week.

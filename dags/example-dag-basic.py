@@ -32,7 +32,7 @@ def example_dag_basic():
         order_data_dict = json.loads(data_string)
         return order_data_dict
 
-    @task(multiple_outputs=True)
+    @task(multiple_outputs=True) # multiple_outputs=True unrolls dictionaries, lists or tuples into separate XCom values
     def transform(order_data_dict: dict):
         """
         #### Transform task
