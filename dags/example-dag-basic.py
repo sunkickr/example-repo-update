@@ -60,4 +60,4 @@ def example_dag_basic():
     order_summary = transform(order_data)
     load(order_summary["total_order_value"])
 
-tutorial_etl_dag = example_dag_basic()
+example_dag_basic = example_dag_basic()
