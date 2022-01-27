@@ -58,6 +58,7 @@ def _get_activity(day_name) -> str:
     start_date=datetime(2021, 6, 11),  # Best practice is to use a static start_date.
     max_active_runs=1,
     schedule_interval="@daily",
+    schedule_interval="@daily",
     # Default settings applied to all tasks within the DAG; can be overwritten at the task level.
     default_args={
         "owner": "community",
