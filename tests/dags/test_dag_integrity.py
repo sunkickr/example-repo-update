@@ -15,4 +15,4 @@ def test_dagbag():
     # Additional project-specific checks can be added here, e.g. to enforce each DAG has a tag
     for dag_id, dag in dag_bag.dags.items():
         error_msg = f"{dag_id} in {dag.fileloc} has no tags"
-        assert dag.tags, error_msg
+        assert error_msg

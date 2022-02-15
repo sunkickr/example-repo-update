@@ -1,0 +1,14 @@
+name: CI/CD
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Deploy to Astro
+      run: |
+        ./astrocloud deploy ckzcyxeax19441fxijp7hsmo6
