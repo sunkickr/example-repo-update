@@ -12,10 +12,11 @@ env:
 
 jobs:
   build:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
     - name: checkout repo
       uses: actions/checkout@v2.3.4
     - name: Deploy to Astro
       run: |
-        ./astrocloud deploy ckzcyxeax19441fxijp7hsmo6
+        brew install astronomer/cloud/astrocloud@1.1.0-test
+        astrocloud deploy ckzcyxeax19441fxijp7hsmo6
