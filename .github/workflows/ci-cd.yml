@@ -5,6 +5,11 @@ on:
     branches:
       - main
 
+env:
+  ## Sets environment variable
+  ASTRONOMER_KEY_ID: ${{ secrets.ASTRONOMER_KEY_ID }}
+  ASTRONOMER_KEY_SECRET: ${{ secrets.ASTRONOMER_KEY_SECRET }}
+
 jobs:
   build:
     runs-on: macos-latest
