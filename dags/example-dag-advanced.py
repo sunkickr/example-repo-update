@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
 from typing import Dict
 
+from airflow.models import Variable
 from airflow.decorators import dag, task
 from airflow.models.baseoperator import chain
 from airflow.operators.bash import BashOperator
@@ -34,6 +35,8 @@ DAY_ACTIVITY_MAPPING = {
     "sunday": {"is_weekday": False, "activity": "sleeping in"},
 }
 
+myvar = Variable.get("myvar")
+
 
 @task(multiple_outputs=True)
 def _going_to_the_beach() -> Dict:
@@ -56,6 +59,7 @@ def _get_activity(day_name) -> str:
 # The ``dag_id`` value defaults to the name of the function it is decorating.
 @dag(
     start_date=datetime(2021, 6, 11),  # Best practice is to use a static start_date.
+    max_active_runs=1,
     max_active_runs=1,
     schedule_interval="@daily",
     # Default settings applied to all tasks within the DAG; can be overwritten at the task level.
