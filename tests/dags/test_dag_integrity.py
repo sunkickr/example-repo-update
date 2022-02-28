@@ -6,7 +6,7 @@ from airflow.models import DagBag
 def test_dagbag():
     """
     Validate DAG files using Airflow's DagBag.
-    This includes sanity checks e.g. do tasks have required arguments, are DAG ids unique & do DAGs have no cycles.
+    This includes validation checks to ensure that tasks have required arguments, DAG IDs are unique, DAGs have no cycles, etc.
     """
     dag_bag = DagBag(include_examples=False)
     print(dag_bag)
