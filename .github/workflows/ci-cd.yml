@@ -19,4 +19,4 @@ jobs:
     - name: Deploy to Astro
       run: |
         brew install astronomer/cloud/astrocloud@1.1.0-test
-        astrocloud deploy ckzcyxeax19441fxijp7hsmo6
+        astrocloud deploy cl0779yeu86851gwn0xgu9obm
