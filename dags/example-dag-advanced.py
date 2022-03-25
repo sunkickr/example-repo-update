@@ -3,7 +3,7 @@ from typing import Dict
 
 from airflow.models import Variable
 from airflow.decorators import dag, task
-from airflow.models.baseoperator import chain
+from airflow.models.baseoperator import chaing
 from airflow.operators.bash import BashOperator
 from airflow.operators.dummy import DummyOperator
 from airflow.operators.email import EmailOperator

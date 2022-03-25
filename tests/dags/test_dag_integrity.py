@@ -1,47 +1,68 @@
 """Test the validity of all DAGs. This test ensures that all Dags have tags, retries set to two, and no import errors. Feel free to add and remove tests."""
 
+import os
+import logging
+from contextlib import contextmanager
+import pytest
 from airflow.models import DagBag
 
+@contextmanager
+def suppress_logging(namespace):
+    logger = logging.getLogger(namespace)
+    old_value = logger.disabled
+    logger.disabled = True
+    try:
+        yield
+    finally:
+        logger.disabled = old_value
 
-def test_dagbag():
-    """
-    Validate DAG files using Airflow's DagBag.
-    This includes sanity checks e.g. do tasks have required arguments, are DAG ids unique & do DAGs have no cycles.
-    """
-    dag_bag = DagBag(include_examples=False)
-    print(dag_bag)
-    assert not dag_bag.import_errors  # Import errors aren't raised but captured to ensure all DAGs are parsed
+def get_import_errors():
+	"""
+	Generate a tuple for import errors in the dag bag
+	"""
+	with suppress_logging('airflow') :
+		dag_bag = DagBag(include_examples=False)
+
+		def strip_path_prefix(path):
+			return os.path.relpath(path ,os.environ.get('AIRFLOW_HOME'))
+
+		# we prepend "(None,None)" to ensure that a test object is always created even if its a no op.
+		return [(None,None)] +[ ( strip_path_prefix(k) , v.strip() ) for k,v in dag_bag.import_errors.items()]
+
+def get_dags():
+	"""
+	Generate a tuple of dag_id, <DAG objects> in the DagBag
+	"""
+	with suppress_logging('airflow') :
+		dag_bag = DagBag(include_examples=False)
+	def strip_path_prefix(path):
+		return os.path.relpath(path ,os.environ.get('AIRFLOW_HOME'))
+	return [ (k,v,strip_path_prefix(v.fileloc)) for k,v in dag_bag.dags.items()]
+
+@pytest.mark.parametrize("rel_path,rv", get_import_errors(), ids=[x[0] for x in get_import_errors()])
+def test_file_imports(rel_path,rv):
+	""" Test for import errors on a file """
+	if rel_path and rv :
+			raise Exception(f"{rel_path} failed to import with message \n {rv}")
+	
 
 
-# Additional project-specific checks can be added here, e.g. to enforce each DAG has a tag:
-def test_dag_tags():
-    dag_bag = DagBag(include_examples=False)
-    exceptions = []
-    for dag_id, dag in dag_bag.dags.items():
-        error_msg = f"{dag_id} in {dag.fileloc} has no tags"
-        try:
-            assert dag.tags, error_msg
-        except Exception as e:
-            exceptions.append(str(e))
+APPROVED_TAGS = {}
 
-    # Create and raise one exception message containing all exceptions for this test
-    if exceptions:
-        exception_msg = "\n".join(exceptions)
-        raise Exception(exception_msg)
+@pytest.mark.parametrize("dag_id,dag,fileloc", get_dags(), ids=[x[2] for x in get_dags()])
+def test_dag_tags(dag_id,dag,fileloc):
+	"""
+	test if a DAG is tagged and if those TAGs are in the approved list
+	"""
+	assert dag.tags, f"{dag_id} in {fileloc} has no tags"
+	if APPROVED_TAGS:
+		assert not set(dag.tags) - APPROVED_TAGS
 
-# Example test to enforce setting retries on all DAGs
-def test_retries_present():
-    dag_bag = DagBag(include_examples=False)
-    print(dag_bag)
-    exceptions = []
-    for dag_id, dag in dag_bag.dags.items():
-        retries = dag_bag.dags[dag_id].default_args.get('retries', [])
-        error_msg = f"{dag_id} in {dag.fileloc} does not have retries not set to 2."
-        try:
-            assert retries == 2, error_msg
-        except Exception as e:
-            exceptions.append(str(e))
-    # Create and raise one exception message containing all exceptions for this test
-    if exceptions:
-        exception_msg = "\n".join(exceptions)
-        raise Exception(exception_msg)
+
+
+@pytest.mark.parametrize("dag_id,dag,filloc", get_dags(), ids=[x[2] for x in get_dags()])
+def test_dag_retries(dag_id,dag,filloc):
+	"""
+	test if a DAG has retries set
+	"""
+	assert dag.default_args.get('retries', None) > 2 , f"{dag_id} in {fileloc} does not have retries not set to 2."

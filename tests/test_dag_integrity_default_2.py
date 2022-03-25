@@ -36,36 +36,11 @@ Variable.get = variable_get_monkeypatch
 # # =========== /MONKEYPATCH VARIABLE.GET() ===========
 
 
-@contextmanager
-def suppress_logging(namespace):
-	"""
-	Suppress logging within a specific namespace to keep tests "clean" during build
-	"""
-	logger = logging.getLogger(namespace)
-	old_value = logger.disabled
-	logger.disabled = True
-	try:
-		yield
-	finally:
-		logger.disabled = old_value
-
-def get_import_errors():
-	"""
-	Generate a tuple for import errors in the dag bag
-	"""
-	with suppress_logging('airflow') :
-		dag_bag = DagBag(include_examples=False)
-
-		def strip_path_prefix(path):
-			return os.path.relpath(path ,os.environ.get('AIRFLOW_HOME'))
-
-		
-		# we prepend "(None,None)" to ensure that a test object is always created even if its a no op.
-		return [(None,None)] +[ ( strip_path_prefix(k) , v.strip() ) for k,v in dag_bag.import_errors.items()]
-
-	
-@pytest.mark.parametrize("rel_path,rv", get_import_errors(), ids=[x[0] for x in get_import_errors()])
-def test_file_imports(rel_path,rv):
-	""" Test for import errors on a file """
-	if rel_path and rv : #Make sure our no op test doesn't raise an error
-		raise Exception(f"{rel_path} failed to import with message \n {rv}")
+def test_dagbag():
+    """
+    Validate DAG files using Airflow's DagBag.
+    This includes sanity checks e.g. do tasks have required arguments, are DAG ids unique & do DAGs have no cycles.
+    """
+    dag_bag = DagBag(include_examples=False)
+    print(dag_bag)
+    assert not dag_bag.import_errors  # Import errors aren't raised but captured to ensure all DAGs are parsed
