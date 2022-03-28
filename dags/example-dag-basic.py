@@ -1,7 +1,7 @@
 import json
 from datetime import datetime, timedelta
 
-from airflow.decorators import dag, task
+from airflow.decorators import dag, taskk
 
 
 @dag(
