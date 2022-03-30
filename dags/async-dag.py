@@ -4,7 +4,7 @@ from airflow.sensors.date_time import DateTimeSensorAsync
 
 with DAG(
     "async_dag",
-    start_date=datetime(2021, 12, 22, 20, 0),
+    start_datee=datetime(2021, 12, 22, 20, 0),
     end_date=datetime(2021, 12, 22, 20, 19),
     schedule_interval="* * * * *",
     catchup=True,

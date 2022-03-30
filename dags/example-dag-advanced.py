@@ -23,6 +23,8 @@ checks which day in the week it is. Lastly, the DAG prints out a statement to ba
 based on which day it is. For example on Tuesday the DAG prints "It's Tuesday and I'm busy with studying"
 """
 
+Variable.get("FOO")
+
 # Reference data for determining the activity to perform per day of week.
 DAY_ACTIVITY_MAPPING = {
     "monday": {"is_weekday": True, "activity": "guitar lessons"},

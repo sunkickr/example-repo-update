@@ -27,13 +27,13 @@ def os_getenv_monkeypatch(key: str, default=None):
 os.getenv = os_getenv_monkeypatch
 # # =========== /MONKEYPATCH OS.GETENV() ===========
 
-# =========== MONKEYPATCH VARIABLE.GET() ===========
-def variable_get_monkeypatch(key: str):
-    print(f"user tried fetching var {key}")
+# # =========== MONKEYPATCH VARIABLE.GET() ===========
+# def variable_get_monkeypatch(key: str):
+#     print(f"user tried fetching var {key}")
 
 
-Variable.get = variable_get_monkeypatch
-# # =========== /MONKEYPATCH VARIABLE.GET() ===========
+# Variable.get = variable_get_monkeypatch
+# # # =========== /MONKEYPATCH VARIABLE.GET() ===========
 
 
 def test_dagbag():
