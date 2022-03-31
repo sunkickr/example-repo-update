@@ -1,0 +1,47 @@
+version: "2"
+services:
+  sftp_server:
+    image: atmoz/sftp:latest
+    ports:
+      - "2222:22"
+    command: foo:pass
+    networks:
+      - airflow
+    volumes:
+      - sftp_data:/home
+      - ./dev/sftp_setup.sh:/etc/sftp.d/sftp_setup.sh
+    cap_add:
+      - SYS_ADMIN
+  minioserver:
+    image: quay.io/minio/minio:latest
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      MINIO_ROOT_USER: minio
+      MINIO_ROOT_PASSWORD: minio123
+    networks:
+      - airflow
+    volumes:
+      - "minio_data:/data"
+    command: ["server", "/data", "--console-address", ":9001"]
+  minioclient:
+    image: quay.io/minio/mc:latest
+    depends_on:
+      - minioserver
+    networks:
+      - airflow
+    entrypoint:
+      - "/bin/sh"
+      - "-c"
+      - "sleep 15 && mc alias set astrominio http://minioserver:9000 minio minio123 && mc mb astrominio/ingestionxcoms"
+# This assigns the port to 5433 on host
+#  postgres:
+#    ports:
+#      - "5433:5432"
+
+volumes:
+  minio_data:
+    driver: local
+  sftp_data:
+    driver: local

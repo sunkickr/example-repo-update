@@ -1,6 +1,8 @@
 from datetime import datetime, timedelta
 from typing import Dict
+import os
 
+from airflow.hooks.base import BaseHook
 from airflow.models import Variable
 from airflow.decorators import dag, task
 from airflow.models.baseoperator import chain
@@ -24,6 +26,8 @@ based on which day it is. For example on Tuesday the DAG prints "It's Tuesday an
 """
 
 Variable.get("FOO")
+os.getenv("FOO")
+BaseHook.get_connection("FOO")
 
 # Reference data for determining the activity to perform per day of week.
 DAY_ACTIVITY_MAPPING = {
