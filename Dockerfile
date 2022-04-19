@@ -1,1 +1,1 @@
-FROM custom-image
+FROM custom-image:4.2.5
