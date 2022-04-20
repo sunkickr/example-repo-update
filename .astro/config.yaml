@@ -2,4 +2,4 @@ postgres:
   user: postgres
 project:
   name: example-repo-update
-  show_warnings: true
+  show_warnings: false
