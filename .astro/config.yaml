@@ -1,5 +1,5 @@
 postgres:
   user: postgres
 project:
-  name: example-repo-update
+  name: my-project
 show_warnings: false

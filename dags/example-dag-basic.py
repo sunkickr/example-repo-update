@@ -6,7 +6,7 @@ from airflow.decorators import dag, task
 
 @dag(
     schedule_interval=timedelta(minutes=30),
-    start_date=datetime(2021, 1, 1),
+    start_dsate=datetime(2021, 1, 1),
     catchup=False, 
     tags=['example'])
 def example_dag_basic():

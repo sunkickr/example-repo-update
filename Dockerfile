@@ -1,1 +1,1 @@
-FROM custom-image:4.2.5
+FROM quay.io/astronomer/astro-runtime:4.2.4
