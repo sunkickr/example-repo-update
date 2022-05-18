@@ -2,4 +2,3 @@ postgres:
   user: postgres
 project:
   name: my-project
-show_warnings: false
