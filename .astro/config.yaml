@@ -1,4 +1,4 @@
 postgres:
   user: postgres
 project:
-  name: my-project
+  name: example-repo-update
