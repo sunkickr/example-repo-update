@@ -19,4 +19,4 @@ jobs:
     - name: Deploy to Astro
       run: |
         brew install astronomer/tap/astro
-        astro deploy cl3xj2ep2204243zl5bnjj05i
+        astro deploy cl3oktm19137251h2nwvfbngdj
