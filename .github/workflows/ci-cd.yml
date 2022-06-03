@@ -13,7 +13,8 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
-    options: --user root
+    container:
+      options: --user root
     steps:
     - name: checkout repo
       uses: actions/checkout@v2.3.4
