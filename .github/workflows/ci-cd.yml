@@ -19,4 +19,4 @@ jobs:
     - name: Deploy Astro
       run: |
         curl -sSL install.astronomer.io | sudo bash -s
-        astro deploy cl3oktm19137251h2nwvfbngdj
+        sudo -E astro deploy cl3oktm19137251h2nwvfbngdj
