@@ -1,4 +1,4 @@
-name: CI/CD
+name: Astronomer CI - Deploy Code
 
 on:
   push:
@@ -6,16 +6,17 @@ on:
       - main
 
 env:
-  ## Sets environment variable
+  ## Sets Deployment API key credentials as environment variables
   ASTRONOMER_KEY_ID: ${{ secrets.ASTRONOMER_KEY_ID }}
   ASTRONOMER_KEY_SECRET: ${{ secrets.ASTRONOMER_KEY_SECRET }}
 
 jobs:
   build:
-    runs-on: macos-11
+    runs-on: ubuntu-latest
     steps:
     - name: checkout repo
       uses: actions/checkout@v2.3.4
     - name: Deploy to Astro
       run: |
-        ./astro deploy
+        brew install astronomer/tap/astro
+        astro deploy cl3xj2ep2204243zl5bnjj05i
