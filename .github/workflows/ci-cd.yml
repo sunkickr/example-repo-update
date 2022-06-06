@@ -18,4 +18,5 @@ jobs:
       uses: actions/checkout@v2.3.4
     - name: Deploy Astro
       run: |
+        ./astro dev parse
         ./astro deploy
