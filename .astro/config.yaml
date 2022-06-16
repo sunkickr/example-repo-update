@@ -2,3 +2,4 @@ postgres:
   user: postgres
 project:
   name: example-repo-update
+skip_parse: true
