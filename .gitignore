@@ -2,3 +2,4 @@
 airflow_settings.yaml
 astrocloud
 __pycache__/
+old_dags
