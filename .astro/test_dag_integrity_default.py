@@ -21,16 +21,16 @@ BaseHook.get_connection = basehook_get_connection_monkeypatch
 # # =========== /MONKEYPATCH BASEHOOK.GET_CONNECTION() ===========
 
 # =========== MONKEYPATCH OS.GETENV() ===========
-def os_getenv_monkeypatch(key: str, *args, default=None, **kwargs):
-	print(f"Attempted to fetch os environment variable during parse, returning a mocked value for {key}")
-	if key == 'JENKINS_HOME' and default is None: # fix https://github.com/astronomer/astro-cli/issues/601
-		return None
-	if default:
-		return default
-	return "NON_DEFAULT_OS_ENV_VALUE"
+# def os_getenv_monkeypatch(key: str, *args, default=None, **kwargs):
+# 	print(f"Attempted to fetch os environment variable during parse, returning a mocked value for {key}")
+# 	if key == 'JENKINS_HOME' and default is None: # fix https://github.com/astronomer/astro-cli/issues/601
+# 		return None
+# 	if default:
+# 		return default
+# 	return "NON_DEFAULT_OS_ENV_VALUE"
 
 
-os.getenv = os_getenv_monkeypatch
+# os.getenv = os_getenv_monkeypatch
 # # =========== /MONKEYPATCH OS.GETENV() ===========
 
 # =========== MONKEYPATCH VARIABLE.GET() ===========
