@@ -3,3 +3,5 @@ airflow_settings.yaml
 astrocloud
 __pycache__/
 old_dags
+connection.env
+.env
