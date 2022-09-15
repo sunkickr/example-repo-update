@@ -13,6 +13,11 @@ def run_sql():
     return """select * from REDDIT_AIRFLOW;
     """
 
+@aql.run_raw_sql(conn_id='david_snowflake')
+def run_sql_2():
+    return """select * from REDDIT_DATA;
+    """
+
 @task()
 def basic_python():
     """
@@ -35,6 +40,7 @@ def basic_python():
 
 @dag(schedule_interval="@daily", start_date=datetime(2022, 7, 27), catchup=False, tags=[])
 def basic_sql():
-     basic_python() >> run_sql()
+    run_sql() >> run_sql_2()
+    # basic_python() >> run_sql()
 
 dag_obj = basic_sql()
