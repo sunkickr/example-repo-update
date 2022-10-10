@@ -6,3 +6,4 @@ __pycache__/
 old_dags
 connection.env
 .env
+airflow_settings_dev.yaml
