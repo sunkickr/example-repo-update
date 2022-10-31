@@ -36,8 +36,8 @@ jobs:
           }
         get_dag_and_regular_deploy "$OUTPUT"
 
-        Write-Host "::set-output name=DAGS_DEPLOY::$DAGS_DEPLOY"
-        Write-Host "::set-output name=REGULAR_DEPLOY::$REGULAR_DEPLOY"
+        echo "DAGS_DEPLOY=$DAGS_DEPLOY\n" >> $GITHUB_OUTPUT
+        echo "REGULAR_DEPLOY=$REGULAR_DEPLOY\n" >> $GITHUB_OUTPUT
     - name: DAG Deploy to Astro
       if: steps.deployment_type.outputs.DAGS_DEPLOY == 'TRUE' && steps.deployment_type.outputs.REGULAR_DEPLOY == 'FALSE'
       run: |
