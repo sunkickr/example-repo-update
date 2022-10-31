@@ -16,8 +16,8 @@ from astro.files import File
 from astro.sql.table import Table
 
 reddit = praw.Reddit(
-    client_id="x-dpX0AWNAdQNxi_iYuZZQ",
-    client_secret="CduG38KSUf-oyA_wlO_RLOrujRZUtQ",
+    client_id=Variable.get("REDDIT_CLIENT_ID"),
+    client_secret=Variable.get("REDDIT_CLIENT_SECRET"),
     user_agent="Learn About AIrflow",
 )
 

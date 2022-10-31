@@ -1,4 +1,4 @@
-name: Astronomer CI - Deploy Code
+name: Astronomer CI - Deploy code
 
 on:
   push:
@@ -16,7 +16,35 @@ jobs:
     steps:
     - name: checkout repo
       uses: actions/checkout@v2.3.4
-    - name: Deploy Astro
+    - name: deployment_type
       run: |
-        curl -sSL install.astronomer.io | sudo bash -s
+        OUTPUT=$(git diff main... --name-only)
+        function get_dag_and_regular_deploy {
+            DAGS_DEPLOY=FALSE
+            REGULAR_DEPLOY=FALSE
+            local IFS=$'\n'
+            local lines=($1)
+            local i
+            for (( i=0; i<${#lines[@]}; i++ )) ; do
+                if [[ "${lines[$i]}" == *"dags/"* ]]
+                then
+                    DAGS_DEPLOY=TRUE
+                else
+                    REGULAR_DEPLOY=TRUE
+                fi
+            done
+          }
+        get_dag_and_regular_deploy "$OUTPUT"
+
+        Write-Host "::set-output name=DAGS_DEPLOY::$DAGS_DEPLOY"
+        Write-Host "::set-output name=REGULAR_DEPLOY::$REGULAR_DEPLOY"
+    - name: DAG Deploy to Astro
+      if: steps.deployment_type.outputs.DAGS_DEPLOY" == 'TRUE' && steps.deployment_type.outputs.REGULAR_DEPLOY == 'FALSE'
+      run: |
+        curl -sSL https://install.astronomer.io | sudo bash -s -- v1.7.0
+        astro deploy --dags
+    - name: Image and DAG Deploy to Astro
+      if: steps.deployment_type.outputs.REGULAR_DEPLOY == 'TRUE'
+      run: |
+        curl -sSL https://install.astronomer.io | sudo bash -s -- v1.7.0
         astro deploy

@@ -1,4 +1,4 @@
-FROM quay.io/astronomer/astro-runtime:6.0.2
+FROM quay.io/astronomer/astro-runtime:5.0.8
 
 # env DAG_DIR=baz
 # ENV DAG_ID=foo

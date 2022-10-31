@@ -1,0 +1,28 @@
+deployment:
+	configuration:
+		name: dev
+		description: dev deployment
+		cluster-name: my cluster
+		runtime-version: 5.0.4
+		scheduler-au: 10
+		scheduler-replicas: 2
+	alert-emails:
+		 - david@astronomer.io
+	worker-queues:
+		- name: ml-tasks
+			type: m5d.8xlarge
+			concurrency: 2
+			min-count: 0
+			max-count: 3
+		- name: short-running-tasks
+			type: m5.xlarge
+			concurrency: 24
+			min-count: 1
+			max-count: 5
+	variables:
+		 env: dev.env
+	 - key: MYVAR 
+		 val: 
+		 secret: true
+	 - key: MYVAR2
+		 val: MYVAL2
