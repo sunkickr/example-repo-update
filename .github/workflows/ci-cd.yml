@@ -39,7 +39,7 @@ jobs:
         Write-Host "::set-output name=DAGS_DEPLOY::$DAGS_DEPLOY"
         Write-Host "::set-output name=REGULAR_DEPLOY::$REGULAR_DEPLOY"
     - name: DAG Deploy to Astro
-      if: steps.deployment_type.outputs.DAGS_DEPLOY" == 'TRUE' && steps.deployment_type.outputs.REGULAR_DEPLOY == 'FALSE'
+      if: steps.deployment_type.outputs.DAGS_DEPLOY == 'TRUE' && steps.deployment_type.outputs.REGULAR_DEPLOY == 'FALSE'
       run: |
         curl -sSL https://install.astronomer.io | sudo bash -s -- v1.7.0
         astro deploy --dags
