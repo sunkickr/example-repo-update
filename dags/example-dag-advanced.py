@@ -74,8 +74,7 @@ DAY_ACTIVITY_MAPPING = {
 
 @task(multiple_outputs=True) # multiple_outputs=True unrolls dictionaries into separate XCom values
 def _going_to_the_beach() -> Dict:
-    return {
-        
+    return { 
         "subject": "Beach day!",
         "body": "It's Saturday and I'm heading to the beach.<br><br>Come join me!<br>",
     }
