@@ -19,6 +19,7 @@ def suppress_logging(namespace):
 def get_import_errors():
 	"""
 	Generate a tuple for import errors in the dag bag
+	
 	"""
 	with suppress_logging('airflow') :
 		dag_bag = DagBag(include_examples=False)
