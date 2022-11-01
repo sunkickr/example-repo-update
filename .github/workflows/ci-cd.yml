@@ -44,7 +44,7 @@ jobs:
 
         echo "DAGS_DEPLOY=$DAGS_DEPLOY" >> $GITHUB_OUTPUT
         echo "REGULAR_DEPLOY=$REGULAR_DEPLOY" >> $GITHUB_OUTPUT
-    id: deployment_type
+      id: deployment_type
     - name: echo
       run : |
         echo ${{ steps.deployment_type.outputs.DAGS_DEPLOY }}
