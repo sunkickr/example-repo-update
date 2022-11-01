@@ -39,6 +39,9 @@ jobs:
           }
         get_dag_and_regular_deploy "$OUTPUT"
 
+        echo $DAGS_DEPLOY
+        echo $REGULAR_DEPLOY
+
         echo "DAGS_DEPLOY=$DAGS_DEPLOY" >> $GITHUB_OUTPUT
         echo "REGULAR_DEPLOY=$REGULAR_DEPLOY" >> $GITHUB_OUTPUT
     - name: DAG Deploy to Astro
