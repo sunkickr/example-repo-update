@@ -50,7 +50,7 @@ jobs:
         curl -sSL https://install.astronomer.io | sudo bash -s -- v1.7.0
         astro deploy --dags
     - name: Image and DAG Deploy to Astro
-      if: ${{ (steps.deployment_type.outputs.REGULAR_DEPLOY == true)
+      if: ${{ (steps.deployment_type.outputs.REGULAR_DEPLOY == true) }}
       run: |
         curl -sSL https://install.astronomer.io | sudo bash -s -- v1.7.0
         astro deploy
