@@ -23,17 +23,17 @@ jobs:
       run: |
         OUTPUT=$(git diff --name-only HEAD^ HEAD)
         function get_dag_and_regular_deploy {
-            DAGS_DEPLOY=FALSE
-            REGULAR_DEPLOY=FALSE
+            DAGS_DEPLOY=false
+            REGULAR_DEPLOY=false
             local IFS=$'\n'
             local lines=($1)
             local i
             for (( i=0; i<${#lines[@]}; i++ )) ; do
                 if [[ "${lines[$i]}" == *"dags/"* ]]
                 then
-                    DAGS_DEPLOY=TRUE
+                    DAGS_DEPLOY=true
                 else
-                    REGULAR_DEPLOY=TRUE
+                    REGULAR_DEPLOY=true
                 fi
             done
           }
@@ -45,12 +45,12 @@ jobs:
         echo "DAGS_DEPLOY=$DAGS_DEPLOY" >> $GITHUB_OUTPUT
         echo "REGULAR_DEPLOY=$REGULAR_DEPLOY" >> $GITHUB_OUTPUT
     - name: DAG Deploy to Astro
-      if: steps.deployment_type.outputs.DAGS_DEPLOY == TRUE && steps.deployment_type.outputs.REGULAR_DEPLOY == FALSE
+      if: ${{ (steps.deployment_type.outputs.DAGS_DEPLOY == true) && (steps.deployment_type.outputs.REGULAR_DEPLOY == false) }}
       run: |
         curl -sSL https://install.astronomer.io | sudo bash -s -- v1.7.0
         astro deploy --dags
     - name: Image and DAG Deploy to Astro
-      if: steps.deployment_type.outputs.REGULAR_DEPLOY == TRUE
+      if: ${{ (steps.deployment_type.outputs.REGULAR_DEPLOY == true)
       run: |
         curl -sSL https://install.astronomer.io | sudo bash -s -- v1.7.0
         astro deploy
