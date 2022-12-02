@@ -1,0 +1,69 @@
+name: Astronomer CI - Deploy code
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  ## Sets Deployment API key credentials as environment variables
+  ASTRONOMER_KEY_ID: ${{ secrets.ASTRONOMER_KEY_ID }}
+  ASTRONOMER_KEY_SECRET: ${{ secrets.ASTRONOMER_KEY_SECRET }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout repo
+      uses: actions/checkout@v2.3.4
+      with:
+        # Checkout as many commits as needed for the diff
+        fetch-depth: 2
+    - name: Get Deployment Type
+      run: |
+        OUTPUT=$(git diff --name-only HEAD^ HEAD)
+        function get_dag_and_regular_deploy {
+            DAGS_DEPLOY=false
+            REGULAR_DEPLOY=false
+            local IFS=$'\n'
+            local lines=($1)
+            local i
+            for (( i=0; i<${#lines[@]}; i++ )) ; do
+                if [[ "${lines[$i]}" == *"dags/"* ]]
+                then
+                    DAGS_DEPLOY=true
+                else
+                    REGULAR_DEPLOY=true
+                fi
+            done
+          }
+        get_dag_and_regular_deploy "$OUTPUT"
+
+        echo $DAGS_DEPLOY
+        echo $REGULAR_DEPLOY
+
+        echo "DAGS_DEPLOY=$DAGS_DEPLOY" >> $GITHUB_OUTPUT
+        echo "REGULAR_DEPLOY=$REGULAR_DEPLOY" >> $GITHUB_OUTPUT
+      id: deployment_type
+    - name: DAG Deploy to Astro
+      if: steps.deployment_type.outputs.DAGS_DEPLOY == 'true' && steps.deployment_type.outputs.REGULAR_DEPLOY == 'false'
+      run: |
+        curl -sSL https://install.astronomer.io | sudo bash -s -- v1.7.0
+        astro context switch astronomer-dev.io
+        astro deploy --dags
+    - name: Build image
+      # only build image if regular deploy
+      if: steps.deployment_type.outputs.REGULAR_DEPLOY == 'true'
+      uses: docker/build-push-action@v2
+      with:
+        tags: ${{ steps.image_tag.outputs.image_tag }}
+        load: true
+        file: ./dag_deployment/Dockerfile
+        context: ./dag_deployment
+    - name: Custom Image and DAG Deploy to Astro
+      if: steps.deployment_type.outputs.REGULAR_DEPLOY == 'true'
+      run: |
+        curl -sSL install.astronomer.io | sudo bash -s -- v1.7.0
+        astro context switch astronomer-dev.io
+        astro context list
+        astro deploy --image-name ${{ steps.image_tag.outputs.image_tag }}

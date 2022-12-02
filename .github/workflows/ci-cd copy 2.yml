@@ -1,0 +1,54 @@
+name: Astronomer CI - Deploy code
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  ## Sets Deployment API key credentials as environment variables
+  ASTRONOMER_KEY_ID: ${{ secrets.ASTRONOMER_KEY_ID }}
+  ASTRONOMER_KEY_SECRET: ${{ secrets.ASTRONOMER_KEY_SECRET }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout repo
+      uses: actions/checkout@v2.3.4
+      with:
+        # Checkout as many commits as needed for the diff
+        fetch-depth: 2
+    # Determine if only dags have changes 
+    - name: Get Deployment Type
+      run: |
+        OUTPUT=$(git diff --name-only HEAD^ HEAD)
+        DAGS_DEPLOY=FALSE
+        REGULAR_DEPLOY=FALSE
+        local IFS=$'\n'
+        local lines=($OUTPUT)
+        local i
+        for (( i=0; i<${#lines[@]}; i++ )) ; do
+            if [[ "${lines[$i]}" == *"dags/"* ]]
+            then
+                DAGS_DEPLOY=TRUE
+            else
+                REGULAR_DEPLOY=TRUE
+            fi
+        done
+
+        echo "DAGS_DEPLOY=$DAGS_DEPLOY" >> $GITHUB_OUTPUT
+        echo "REGULAR_DEPLOY=$REGULAR_DEPLOY" >> $GITHUB_OUTPUT
+      id: deployment_type
+    # If only DAGs changed do a DAG Deploy
+    - name: DAG Deploy to Astro
+      if: steps.deployment_type.outputs.DAGS_DEPLOY == 'true' && steps.deployment_type.outputs.REGULAR_DEPLOY == 'false'
+      run: |
+        curl -sSL https://install.astronomer.io | sudo bash -s -- v1.7.0
+        astro deploy --dags
+    # If any other files changed do a regular Deploy
+    - name: Image and DAG Deploy to Astro
+      if: steps.deployment_type.outputs.REGULAR_DEPLOY == 'true'
+      run: |
+        curl -sSL https://install.astronomer.io | sudo bash -s -- v1.7.0
+        astro deploy
