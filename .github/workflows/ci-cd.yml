@@ -14,46 +14,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: checkout repo
-      uses: actions/checkout@v2.3.4
+    - name: Deploy to Astro
+      uses: astronomer/actions/deploy
       with:
         # Checkout as many commits as needed for the diff
-        fetch-depth: 2
-    - name: Get Deployment Type
-      run: |
-        OUTPUT=$(git diff --name-only HEAD^ HEAD)
-        function get_dag_and_regular_deploy {
-            DAGS_DEPLOY=false
-            REGULAR_DEPLOY=false
-            local IFS=$'\n'
-            local lines=($1)
-            local i
-            for (( i=0; i<${#lines[@]}; i++ )) ; do
-                if [[ "${lines[$i]}" == *"dags/"* ]]
-                then
-                    DAGS_DEPLOY=true
-                else
-                    REGULAR_DEPLOY=true
-                fi
-            done
-          }
-        get_dag_and_regular_deploy "$OUTPUT"
-
-        echo $DAGS_DEPLOY
-        echo $REGULAR_DEPLOY
-
-        echo "DAGS_DEPLOY=$DAGS_DEPLOY" >> $GITHUB_OUTPUT
-        echo "REGULAR_DEPLOY=$REGULAR_DEPLOY" >> $GITHUB_OUTPUT
-      id: deployment_type
-    - name: DAG Deploy to Astro
-      if: steps.deployment_type.outputs.DAGS_DEPLOY == 'true' && steps.deployment_type.outputs.REGULAR_DEPLOY == 'false'
-      run: |
-        curl -sSL https://install.astronomer.io | sudo bash -s -- v1.7.0
-        astro context switch astronomer-dev.io
-        astro deploy --dags
-    - name: Image and DAG Deploy to Astro
-      if: steps.deployment_type.outputs.REGULAR_DEPLOY == 'true'
-      run: |
-        curl -sSL https://install.astronomer.io | sudo bash -s -- v1.7.0
-        astro context switch astronomer-dev.io
-        astro deploy
+        dag-deploy-enabled: true

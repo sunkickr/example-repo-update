@@ -5,3 +5,4 @@ __pycache__/
 old_dags
 *.env
 dag-deploy.sh
+deploy/
