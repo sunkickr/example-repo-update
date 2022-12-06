@@ -16,7 +16,6 @@ def basehook_get_connection_monkeypatch(key: str,*args, **kwargs):
     print(f"Attempted to fetch connection during parse returning an empty Connection object for {key}")
     return Connection(key)
 
-
 BaseHook.get_connection = basehook_get_connection_monkeypatch
 # # =========== /MONKEYPATCH BASEHOOK.GET_CONNECTION() ===========
 
