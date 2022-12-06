@@ -18,3 +18,4 @@ jobs:
       uses: astronomer/actions/deploy@v0.1
       with:
         dag-folder: tests/
+        dag-deploy-enabled: true
