@@ -19,7 +19,6 @@ from airflow.utils.weekday import WeekDay # Used to determine what day of the we
 
 from helper_functions.helper import _get_activity, DAY_ACTIVITY_MAPPING
 
-
 """
 This DAG is intended to demonstrate a number of core Apache Airflow concepts that are central to the pipeline
 authoring experience, including the TaskFlow API, Edge Labels, Jinja templating, branching,
