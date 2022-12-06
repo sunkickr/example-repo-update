@@ -16,6 +16,3 @@ jobs:
     steps:
     - name: Deploy to Astro
       uses: astronomer/actions/deploy@v0.1
-      with:
-        # Checkout as many commits as needed for the diff
-        dag-deploy-enabled: true

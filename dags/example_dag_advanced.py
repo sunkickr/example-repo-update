@@ -68,6 +68,7 @@ def _going_to_the_beach() -> Dict:
         "body": "It's Saturday and I'm heading to the beach.<br><br>Come join me!<br>",
     }
 
+
 # When using the DAG decorator, the "dag" argument doesn't need to be specified for each task.
 # The "dag_id" value defaults to the name of the function it is decorating if not explicitly set.
 # In this example, the "dag_id" value would be "example_dag_advanced".
