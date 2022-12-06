@@ -1,5 +1,5 @@
 astro-sdk-python
 apache-airflow-providers-http
-pandas
 holidays
 praw
+pandas
