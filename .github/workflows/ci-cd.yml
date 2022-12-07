@@ -11,7 +11,7 @@ env:
   ASTRONOMER_KEY_SECRET: ${{ secrets.ASTRONOMER_KEY_SECRET }}
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
     - name: Deploy to Astro
@@ -19,3 +19,4 @@ jobs:
       with:
         dag-folder: tests/
         dag-deploy-enabled: true
+        parse: true
