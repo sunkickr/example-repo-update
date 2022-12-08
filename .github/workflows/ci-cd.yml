@@ -19,4 +19,5 @@ jobs:
       with:
         dag-folder: tests/
         dag-deploy-enabled: true
-        force: true
+        pytest: true
+        pytest-file: tests/dags/test_dag_integrity.py
