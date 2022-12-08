@@ -20,3 +20,4 @@ jobs:
         dag-folder: tests/
         dag-deploy-enabled: true
         parse: true
+        force: true
