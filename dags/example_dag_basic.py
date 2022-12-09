@@ -48,7 +48,7 @@ def example_dag_basic():
         A simple "transform" task which takes in the collection of order data and
         computes the total order value.
         """
-        total_order_value = 0
+        total_order_value = ""
 
         for value in order_data_dict.values():
             total_order_value += value
