@@ -18,7 +18,7 @@ def basehook_get_connection_monkeypatch(key: str,*args, **kwargs):
 
 
 BaseHook.get_connection = basehook_get_connection_monkeypatch
-# # =========== /MONKEYPATCH BASEHOOK.GET_CONNECTION() ===========
+# =========== /MONKEYPATCH BASEHOOK.GET_CONNECTION() ===========
 
 # =========== MONKEYPATCH OS.GETENV() ===========
 # def os_getenv_monkeypatch(key: str, *args, default=None, **kwargs):
@@ -31,7 +31,7 @@ BaseHook.get_connection = basehook_get_connection_monkeypatch
 
 
 # os.getenv = os_getenv_monkeypatch
-# # =========== /MONKEYPATCH OS.GETENV() ===========
+# =========== /MONKEYPATCH OS.GETENV() ===========
 
 # =========== MONKEYPATCH VARIABLE.GET() ===========
 
@@ -53,7 +53,15 @@ def variable_get_monkeypatch(key: str, default_var=None, deserialize_json=False)
 	return "NON_DEFAULT_MOCKED_VARIABLE_VALUE"
 
 Variable.get = variable_get_monkeypatch
-# # =========== /MONKEYPATCH VARIABLE.GET() ===========
+## =========== MONKEYPATCH VARIABLE.GET() ===========
+
+# =========== MONKEYPATCH BaseHook.get_connection(). ===========
+def basehook_get_connection_monkeypatch(key: str,*args, **kwargs):
+    print(f"Attempted to fetch connection during parse returning an empty Connection object for {key}")
+    return Connection(key)
+
+
+BaseHook.get_connection = basehook_get_connection_monkeypatch
 
 
 @contextmanager

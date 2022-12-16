@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Deploy to Astro
-      uses: astronomer/actions/deploy@v0.1
+      uses: astronomer/deploy-action@v0.1
       with:
         dag-folder: tests/
         dag-deploy-enabled: true
