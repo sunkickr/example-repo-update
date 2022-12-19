@@ -115,6 +115,7 @@ def example_dag_advanced():
     # Templated value for determining the name of the day of week based on the start date of the DAG Run
     day_name = "{{ dag_run.start_date.strftime('%A').lower() }}"
 
+
     # Begin weekday tasks.
     # Tasks within this TaskGroup (weekday tasks) will be grouped together in the Airflow UI
     with TaskGroup("weekday_activities") as weekday_activities:
