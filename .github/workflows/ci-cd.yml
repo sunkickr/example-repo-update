@@ -17,7 +17,7 @@ jobs:
     - name: Deploy to Astro
       uses: astronomer/deploy-action@v0.1
       with:
-        dag-folder: tests/
         dag-deploy-enabled: true
         pytest: true
-        pytest-file: tests/dags/test_dag_integrity.py
+        pytest-file: tests/test_dag_integrity.py
+        image-name: custom-image

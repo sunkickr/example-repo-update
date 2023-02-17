@@ -75,6 +75,7 @@ def _going_to_the_beach() -> Dict:
     # This DAG is set to run for the first time on June 11, 2021. Best practice is to use a static start_date.
     # Subsequent DAG runs are instantiated based on scheduler_interval below.
     start_date=datetime(2021, 6, 11),
+    start_date=datetime(2021, 6, 11),
     # This defines how many instantiations of this DAG (DAG Runs) can execute concurrently. In this case,
     # we're only allowing 1 DAG run at any given time, as opposed to allowing multiple overlapping DAG runs.
     max_active_runs=1,
