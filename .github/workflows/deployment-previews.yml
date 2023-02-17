@@ -22,19 +22,15 @@ jobs:
         # curl -sSL https://install.astronomer.io | sudo bash -s
 
         # DEPLOYMENT_NAME="$(./astro deployment inspect $DEPLOYMENT_ID --key configuration.name)"
-        BRANCH_DEPLOYMENT_NAME=${GITHUB_REF##*/}_$DEPLOYMENT_ID
+        BRANCH_DEPLOYMENT_NAME=${GITHUB_HEAD_REF##*/}_$DEPLOYMENT_ID
         BRANCH_DEPLOYMENT_NAME="${BRANCH_DEPLOYMENT_NAME// /_}"
 
         # Create template of deployment to be copied with
-        # FILE="$(./astro deployment inspect $DEPLOYMENT_ID --template)"
-        # echo ${FILE##*context} > deployment-template.yaml
         ./astro deployment inspect $DEPLOYMENT_ID --template > deployment-template.yaml
         # Add name to deployment template file
         sed -i "s|  name:.*|  name: ${BRANCH_DEPLOYMENT_NAME}|g" deployment-template.yaml
-
         sed -i '/^Using an Astro API Token/,/Switched context/d' deployment-template.yaml
         
-        cat deployment-template.yaml
         # Create new deploymeent preview based on the deployment template file
         ./astro deployment create --deployment-file deployment-template.yaml
 
