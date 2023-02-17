@@ -26,7 +26,7 @@ jobs:
         # curl -sSL https://install.astronomer.io | sudo bash -s
 
         DEPLOYMENT_NAME="$(./astro deployment inspect $DEPLOYMENT_ID --key configuration.name)"
-        ssBRANCH_DEPLOYMENT_NAME="$($BRANCH_NAME-$DEPLOYMENT_NAME)"
+        BRANCH_DEPLOYMENT_NAME=$BRANCH_NAME_$DEPLOYMENT_NAME
 
         # Create template of deployment to be copied with
         ./astro deployment inspect $DEPLOYMENT_ID --template > deployment-template.yaml # autmatically creates deployment-template.yaml file
