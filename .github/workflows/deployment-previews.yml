@@ -25,7 +25,7 @@ jobs:
         # install the Astro CLI
         # curl -sSL https://install.astronomer.io | sudo bash -s
 
-        DEPLOYMENT_NAME="$(./astro deploysment inspect $DEPLOYMENT_ID --key configuration.name)"
+        DEPLOYMENT_NAME="$(./astro deployment inspect $DEPLOYMENT_ID --key configuration.name)"
         ssBRANCH_DEPLOYMENT_NAME="$($BRANCH_NAME-$DEPLOYMENT_NAME)"
 
         # Create template of deployment to be copied with
