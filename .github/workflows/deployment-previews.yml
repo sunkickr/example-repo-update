@@ -1,7 +1,6 @@
 name: Astronomer CI - Deploy code
 
 on:
-  push:
   pull_request:
     branches:
       - main
@@ -21,11 +20,11 @@ jobs:
     - name: Create and Deploy to Deployment Preview
       shell: bash
       run: |
-        $DEPLOYMENT_NAME=astro deplyoment inspect $DEPLOYMENT_ID --key configuration.name
-        $BRANCH_DEPLOYMENT_NAME=$BRANCH_NAME-$DEPLOYMENT_NAME
-
         # install the Astro CLI
         # curl -sSL https://install.astronomer.io | sudo bash -s
+
+        $DEPLOYMENT_NAME=./astro deplyoment inspect $DEPLOYMENT_ID --key configuration.name
+        $BRANCH_DEPLOYMENT_NAME=$BRANCH_NAME-$DEPLOYMENT_NAME
 
         # Create template of deployment to be copied with
         ./astro deployment inspect $DEPLOYMENT_ID --template > deployment-template.yaml # autmatically creates deployment-template.yaml file
