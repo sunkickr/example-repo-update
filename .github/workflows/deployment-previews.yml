@@ -30,7 +30,7 @@ jobs:
         # echo ${FILE##*context} > deployment-template.yaml
         ./astro deployment inspect $DEPLOYMENT_ID --template > deployment-template.yaml
         # Add name to deployment template file
-        sed -i 's|name:.*|- name: ${BRANCH_DEPLOYMENT_NAME}|g' deployment-template.yaml
+        sed -i 's|- name:.*|name: ${BRANCH_DEPLOYMENT_NAME}|g' deployment-template.yaml
         
         cat deployment-template.yaml
         # Create new deploymeent preview based on the deployment template file
