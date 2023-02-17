@@ -30,7 +30,7 @@ jobs:
 
         # Create template of deployment to be copied with
         ./astro deployment inspect $DEPLOYMENT_ID --template > deployment-template.yaml # autmatically creates deployment-template.yaml file
-
+        echo $BRANCH_DEPLOYMENT_NAME
         # Add name to deployment template file
         sed -i -e "s#name:#name: $BRANCH_DEPLOYMENT_NAME#" deployment-template.yaml
         
