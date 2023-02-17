@@ -30,7 +30,7 @@ jobs:
         echo ${GITHUB_REF##*/}
         echo $BRANCH_DEPLOYMENT_NAME
         # Add name to deployment template file
-        sed -i 's/name:.*/name: $BRANCH_DEPLOYMENT_NAME' deployment-template.yaml
+        sed -i 's|name:.*|name: $BRANCH_DEPLOYMENT_NAME|g' deployment-template.yaml
         
         # Create new deploymeent preview based on the deployment template file
         ./astro deployment create --deployment-file deployment-template.yaml
