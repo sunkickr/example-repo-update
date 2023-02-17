@@ -32,7 +32,7 @@ jobs:
         # Add name to deployment template file
         sed -i "s|  name:.*|  name: ${BRANCH_DEPLOYMENT_NAME}|g" deployment-template.yaml
 
-        sed -i '0,/^Switched context$/d' file deployment-template.yaml
+        sed -i '0,/^Switched context$/d' deployment-template.yaml
         
         cat deployment-template.yaml
         # Create new deploymeent preview based on the deployment template file
