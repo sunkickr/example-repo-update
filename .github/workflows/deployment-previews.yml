@@ -15,10 +15,6 @@ jobs:
     steps:
     - name: checkout repo
       uses: actions/checkout@v3
-    - name: Extract branch name
-      shell: bash
-      run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
-      id: extract_branch
     - name: Create and Deploy to Deployment Preview
       shell: bash
       run: |
@@ -26,12 +22,12 @@ jobs:
         # curl -sSL https://install.astronomer.io | sudo bash -s
 
         # DEPLOYMENT_NAME="$(./astro deployment inspect $DEPLOYMENT_ID --key configuration.name)"
-        BRANCH_DEPLOYMENT_NAME=${{ steps.extract_branch.outputs.branch }}_$DEPLOYMENT_ID
+        BRANCH_DEPLOYMENT_NAME=${GITHUB_REF##*/}_$DEPLOYMENT_ID
         BRANCH_DEPLOYMENT_NAME="${BRANCH_DEPLOYMENT_NAME// /_}"
 
         # Create template of deployment to be copied with
         ./astro deployment inspect $DEPLOYMENT_ID --template > deployment-template.yaml # autmatically creates deployment-template.yaml file
-        echo ${{ steps.extract_branch.outputs.branch }}
+        echo ${GITHUB_REF##*/}
         echo $BRANCH_DEPLOYMENT_NAME
         # Add name to deployment template file
         sed -i -e -s "name:.$ | name: $BRANCH_DEPLOYMENT_NAME" deployment-template.yaml
