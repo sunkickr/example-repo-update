@@ -26,11 +26,10 @@ jobs:
         BRANCH_DEPLOYMENT_NAME="${BRANCH_DEPLOYMENT_NAME// /_}"
 
         # Create template of deployment to be copied with
-        ./astro deployment inspect $DEPLOYMENT_ID --template > deployment-template.yaml # autmatically creates deployment-template.yaml file
-        echo ${GITHUB_REF##*/}
-        echo $BRANCH_DEPLOYMENT_NAME
+        FILE="$(./astro deployment inspect $DEPLOYMENT_ID --template)"
+        ${FILE##*context} > deployment-template.yaml
         # Add name to deployment template file
-        sed -i 's|name:.*|name: $BRANCH_DEPLOYMENT_NAME|g' deployment-template.yaml
+        sed -i 's|name:.*|- name: $BRANCH_DEPLOYMENT_NAME|g' deployment-template.yaml
         
         cat deployment-template.yaml
         # Create new deploymeent preview based on the deployment template file
