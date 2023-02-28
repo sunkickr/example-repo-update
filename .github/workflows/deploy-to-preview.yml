@@ -18,10 +18,10 @@ jobs:
     - name: Deploy to Deployment Preview
       shell: bash
       run: |
-      # get deployment preview name
-      DEPLOYMENT_NAME="$(./astro deployment inspect $DEPLOYMENT_ID --key configuration.name)"
-      BRANCH_DEPLOYMENT_NAME=${GITHUB_HEAD_REF##*/}_$DEPLOYMENT_NAME
-      BRANCH_DEPLOYMENT_NAME="${BRANCH_DEPLOYMENT_NAME// /_}"
+        # get deployment preview name
+        DEPLOYMENT_NAME="$(./astro deployment inspect $DEPLOYMENT_ID --key configuration.name)"
+        BRANCH_DEPLOYMENT_NAME=${GITHUB_HEAD_REF##*/}_$DEPLOYMENT_NAME
+        BRANCH_DEPLOYMENT_NAME="${BRANCH_DEPLOYMENT_NAME// /_}"
 
-      # Deploy new code to the deployment preview 
-      ./astro deploy -n $BRANCH_DEPLOYMENT_NAME
+        # Deploy new code to the deployment preview 
+        ./astro deploy -n $BRANCH_DEPLOYMENT_NAME
