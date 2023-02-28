@@ -1,16 +1,16 @@
 name: Astronomer CI - Deploy code
 
 on:
-  pull_request:
+  delete:
     branches:
-      - main
+    - "**"
 env:
   ## Sets Deployment API key credentials as environment variables
   ASTRO_API_TOKEN: ${{ secrets.ASTRO_API_TOKEN }}
   DEPLOYMENT_ID: cle4p0fdt325082f05nco4rt6pu
 
 jobs:
-  deploy:
+  create-deployment-preview:
     runs-on: ubuntu-latest
     steps:
     - name: checkout repo
@@ -21,18 +21,10 @@ jobs:
         # install the Astro CLI
         # curl -sSL https://install.astronomer.io | sudo bash -s
 
+        # get deployment preview name
         DEPLOYMENT_NAME="$(./astro deployment inspect $DEPLOYMENT_ID --key configuration.name)"
         BRANCH_DEPLOYMENT_NAME=${GITHUB_HEAD_REF##*/}_$DEPLOYMENT_NAME
         BRANCH_DEPLOYMENT_NAME="${BRANCH_DEPLOYMENT_NAME// /_}"
 
-        # Create template of deployment to be copied with
-        ./astro deployment inspect $DEPLOYMENT_ID --template > deployment-template.yaml # autmatically creates deployment-template.yaml file
-
-        # Add name to deployment template file
-        sed -i "s|  name:.*|  name: ${BRANCH_DEPLOYMENT_NAME}|g" deployment-template.yaml
-        
-        # Create new deploymeent preview based on the deployment template file
-        ./astro deployment create --deployment-file deployment-template.yaml
-
-        # Deploy new code to the deployment preview 
-        ./astro deploy -n $BRANCH_DEPLOYMENT_NAME
+        # delete branch deployment
+        ./astro deployment delete -n BRANCH_DEPLOYMENT_NAME
