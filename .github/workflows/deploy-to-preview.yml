@@ -11,7 +11,7 @@ env:
 
 jobs:
   deploy-to-preview:
-    uns-on: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
     - name: checkout repo
       uses: actions/checkout@v3
