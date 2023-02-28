@@ -35,4 +35,4 @@ jobs:
         ./astro deployment create --deployment-file deployment-template.yaml
 
         # Deploy new code to the deployment preview 
-        ./astro deploy --name $BRANCH_DEPLOYMENT_NAME
+        ./astro deploy -n $BRANCH_DEPLOYMENT_NAME
