@@ -20,4 +20,3 @@ jobs:
         dag-deploy-enabled: true
         pytest: true
         pytest-file: tests/test_dag_integrity.py
-        image-name: custom-image
