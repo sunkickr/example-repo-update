@@ -21,10 +21,12 @@ jobs:
         # install the Astro CLI
         # curl -sSL https://install.astronomer.io | sudo bash -s
 
+        ./astro workspace switch "Onboarding - Customer Success"
+
         # get deployment preview name
         DEPLOYMENT_NAME="$(./astro deployment inspect $DEPLOYMENT_ID --key configuration.name)"
         BRANCH_DEPLOYMENT_NAME=${GITHUB_HEAD_REF##*/}_$DEPLOYMENT_NAME
         BRANCH_DEPLOYMENT_NAME="${BRANCH_DEPLOYMENT_NAME// /_}"
 
         # delete branch deployment
-        ./astro deployment delete -n BRANCH_DEPLOYMENT_NAME
+        ./astro deployment delete -n $BRANCH_DEPLOYMENT_NAME
