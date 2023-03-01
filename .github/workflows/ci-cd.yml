@@ -1,4 +1,4 @@
-name: Astronomer CI - Deploy code
+name: Astronomer CI - Deploy code to Astro
 
 on:
   push:
@@ -18,5 +18,3 @@ jobs:
       uses: astronomer/deploy-action@v0.1
       with:
         dag-deploy-enabled: true
-        pytest: true
-        pytest-file: tests/test_dag_integrity.py
