@@ -47,6 +47,7 @@ def insert_into_snowflake_func(find_airflow_posts: Table):
     select * from {{find_airflow_posts}};
     """
 
+
 @aql.run_raw_sql(conn_id='david_snowflake')
 def delete_duplicate_posts_func():
     return """BEGIN
