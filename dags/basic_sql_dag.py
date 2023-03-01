@@ -41,7 +41,7 @@ def basic_python():
 
 @dag(schedule_interval="@daily", start_date=datetime(2022, 7, 27), catchup=False, tags=[])
 def basic_sql():
-    run_sql() >> run_sql_2()
+    run_sql() >> run_sql_2() >> basic_python()
     # basic_python() >> run_sql()
 
 dag_obj = basic_sql()
