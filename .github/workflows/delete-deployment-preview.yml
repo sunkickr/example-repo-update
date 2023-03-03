@@ -21,7 +21,9 @@ jobs:
         # install the Astro CLI
         # curl -sSL https://install.astronomer.io | sudo bash -s
 
-        ./astro workspace switch "Onboarding - Customer Success"
+        ./astro context switch astronomer-dev.io
+
+        # ./astro workspace switch "Onboarding - Customer Success"
 
         # get deployment preview name
         DEPLOYMENT_NAME="$(./astro deployment inspect $DEPLOYMENT_ID --key configuration.name)"
