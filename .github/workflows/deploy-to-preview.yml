@@ -8,7 +8,7 @@ on:
 env:
   ## Sets Deployment API key credentials as environment variables
   ASTRO_API_TOKEN: ${{ secrets.ASTRO_API_TOKEN }}
-  DEPLOYMENT_ID: cle4p6y241451300jl3l0r88m
+  DEPLOYMENT_ID: cleyelyk717631j1e9wihcrkx
 
 jobs:
   deploy-to-preview:
