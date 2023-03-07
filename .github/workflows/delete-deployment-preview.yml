@@ -4,6 +4,7 @@ on:
   delete:
     branches:
     - "**"
+
 env:
   ## Sets Deployment API key credentials as environment variables
   ASTRO_API_TOKEN: ${{ secrets.ASTRO_API_TOKEN }}

@@ -4,6 +4,7 @@ on:
   pull_request:
     branches:
       - main
+
 env:
   ## Sets Deployment API key credentials as environment variables
   ASTRO_API_TOKEN: ${{ secrets.ASTRO_API_TOKEN }}
@@ -26,5 +27,5 @@ jobs:
         BRANCH_DEPLOYMENT_NAME=${GITHUB_HEAD_REF##*/}_$DEPLOYMENT_NAME
         BRANCH_DEPLOYMENT_NAME="${BRANCH_DEPLOYMENT_NAME// /_}"
 
-        # Deploy new code to the deployment preview 
+        # Deploy new code to the deployment preview
         ./astro deploy -n $BRANCH_DEPLOYMENT_NAME
