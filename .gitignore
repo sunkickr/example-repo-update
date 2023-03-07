@@ -6,3 +6,4 @@ old_dags
 *.env
 dag-deploy.sh
 deploy/
+deploy-action-v2/
