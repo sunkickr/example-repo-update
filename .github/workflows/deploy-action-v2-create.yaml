@@ -1,9 +1,9 @@
-name: Astronomer CI - Deploy code to Astro
+name: Astronomer CI - Create deployment preview
 
 on:
-  push:
+  create:
     branches:
-      - main
+    - "**"
 
 env:
   ## Sets Deployment API key credentials as environment variables
@@ -13,7 +13,8 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-    - name: Deploy to Astro
+    - name: Create Deployment Preivew
       uses: astronomer/deploy-action@v0.2
       with:
+        action: create-deployment-preview
         deployment-id: cle4p0fdt325082f05nco4rt6pu

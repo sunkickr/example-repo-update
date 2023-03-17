@@ -1,7 +1,7 @@
-name: Astronomer CI - Deploy code to Astro
+name: Astronomer CI - Deploy code to Preview
 
 on:
-  push:
+  pull_request:
     branches:
       - main
 
@@ -13,7 +13,8 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-    - name: Deploy to Astro
+    - name: Deploy to Deployment Preivew
       uses: astronomer/deploy-action@v0.2
       with:
+        action: deploy-deployment-preview
         deployment-id: cle4p0fdt325082f05nco4rt6pu
