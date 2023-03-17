@@ -18,3 +18,4 @@ jobs:
       with:
         action: create-deployment-preview
         deployment-id: cle4p0fdt325082f05nco4rt6pu
+        preview-name: test-preview
