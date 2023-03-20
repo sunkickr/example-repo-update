@@ -16,4 +16,4 @@ jobs:
     - name: Deploy to Astro
       uses: astronomer/deploy-action@v0.2
       with:
-        deployment-id: cle4p0fdt325082f05nco4rt6pu
+        deployment-name: "david test"
