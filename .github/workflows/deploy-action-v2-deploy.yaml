@@ -17,4 +17,5 @@ jobs:
       uses: astronomer/deploy-action@v0.2
       with:
         action: deploy-deployment-preview
+        root-folder: new-project
         deployment-name: "david test"

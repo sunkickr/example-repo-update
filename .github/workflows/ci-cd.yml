@@ -16,4 +16,5 @@ jobs:
     - name: Deploy to Astro
       uses: astronomer/deploy-action@v0.2
       with:
+        root-folder: new-project
         deployment-name: "david test"
