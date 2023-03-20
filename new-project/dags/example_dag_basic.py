@@ -35,7 +35,7 @@ def example_dag_basic():
     """
 
     @task()
-    def extract():
+    def extracting():
         """
         #### Extract task
         A simple "extract" task to get data ready for the rest of the
@@ -73,7 +73,7 @@ def example_dag_basic():
 
         print(f"Total order value is: {total_order_value:.2f}")
 
-    order_data = extract()
+    order_data = extracting()
     order_summary = transform(order_data)
     load(order_summary["total_order_value"])
 
