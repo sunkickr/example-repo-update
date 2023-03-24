@@ -1,4 +1,4 @@
-name: Astronomer CI - Deploy code to Astro
+name: Astronomer CI - Deploy code
 
 on:
   push:
@@ -7,14 +7,12 @@ on:
 
 env:
   ## Sets Deployment API key credentials as environment variables
-  ASTRO_API_TOKEN: ${{ secrets.ASTRO_API_TOKEN }}
+  ASTRONOMER_KEY_ID: ${{ secrets.ASTRONOMER_KEY_ID }}
+  ASTRONOMER_KEY_SECRET: ${{ secrets.ASTRONOMER_KEY_SECRET }}
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
     - name: Deploy to Astro
       uses: astronomer/deploy-action@v0.2
-      with:
-        root-folder: new-project
-        deployment-name: "david test"
