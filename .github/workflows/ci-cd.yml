@@ -1,18 +1,35 @@
-name: Astronomer CI - Deploy code
+name: Astronomer CI - Additional build-time args
 
 on:
   push:
     branches:
       - main
 
-env:
-  ## Sets Deployment API key credentials as environment variables
-  ASTRONOMER_KEY_ID: ${{ secrets.ASTRONOMER_KEY_ID }}
-  ASTRONOMER_KEY_SECRET: ${{ secrets.ASTRONOMER_KEY_SECRET }}
-
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      ASTRONOMER_KEY_ID: ${{ secrets.ASTRO_ACCESS_KEY_ID_DEV }}
+      ASTRONOMER_KEY_SECRET: ${{ secrets.ASTRO_SECRET_ACCESS_KEY_DEV }}
     steps:
+    - name: Check out the repo
+      uses: actions/checkout@v3
+    - name: Create image tag
+      id: image_tag
+      run: echo ::set-output name=image_tag::astro-$(date +%Y%m%d%H%M%S)
+    - name: Build image
+      uses: docker/build-push-action@v2
+      with:
+        tags: ${{ steps.image_tag.outputs.image_tag }}
+        load: true
+        # Define your custom image's build arguments, contexts, and connections here using
+        # the available GitHub Action settings:
+        # https://github.com/docker/build-push-action#customizing .
+        # This example uses `build-args` , but your use case might require configuring
+        # different values.
+        build-args: |
+          <your-build-arguments>
     - name: Deploy to Astro
-      uses: astronomer/deploy-action@v0.2
+      uses: astronomer/deploy-action@v0.1
+      with:
+        image-name: ${{ steps.image_tag.outputs.image_tag }}

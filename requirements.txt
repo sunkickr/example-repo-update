@@ -3,3 +3,4 @@ praw
 apache-airflow-providers-http
 holidays
 pandas
+matplotlib
