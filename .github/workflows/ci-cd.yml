@@ -9,8 +9,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      ASTRONOMER_KEY_ID: ${{ secrets.ASTRONOMER_KEY_ID }}
-      ASTRONOMER_KEY_SECRET: ${{ secrets.ASTRONOMER_KEY_SECRET }}
+      ASTRO_API_TOKEN: ${{ secrets.ASTRO_API_TOKEN }}
     steps:
     - name: Check out the repo
       uses: actions/checkout@v3
@@ -33,3 +32,5 @@ jobs:
       uses: astronomer/deploy-action@v0.1
       with:
         image-name: ${{ steps.image_tag.outputs.image_tag }}
+        deployment-id: clgcb4iol75295azwd1ghvse5d
+        parse: true
