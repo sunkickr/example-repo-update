@@ -1,10 +1,9 @@
 name: Astronomer CI - Delete Deployment Preview
 
 on:
-  delete:
+  pull_request:
     branches:
-    - '**'
-    - '!main' 
+      - main
 
 env:
   ## Sets Deployment API key credentials as environment variables
