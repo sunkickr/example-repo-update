@@ -14,7 +14,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-    - name: Create Deployment Preivew
+    - name: Delete Deployment Preivew
       uses: astronomer/deploy-action@v0.3
       with:
         action: delete-deployment-preview
