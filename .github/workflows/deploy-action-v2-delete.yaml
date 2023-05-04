@@ -1,0 +1,22 @@
+name: Astronomer CI - Delete Deployment Preview
+
+on:
+  delete:
+    branches:
+    - '**'
+    - '!main' 
+
+env:
+  ## Sets Deployment API key credentials as environment variables
+  ASTRO_API_TOKEN: ${{ secrets.ASTRO_API_TOKEN }}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Create Deployment Preivew
+      uses: astronomer/deploy-action@v0.3
+      with:
+        action: delete-deployment-preview
+        root-folder: new-project
+        deployment-name: "david test"
