@@ -1,10 +1,9 @@
 name: Astronomer CI - Deploy code to Preview
 
 on:
-  push:
+  pull_request:
     branches:
-    - '**'
-    - '!main' 
+      - main
 
 env:
   ## Sets Deployment API key credentials as environment variables
