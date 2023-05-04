@@ -19,4 +19,4 @@ jobs:
       with:
         action: deploy-deployment-preview
         root-folder: new-project
-        deployment-name: "david test"
+        deployment-name: "test deployment"
