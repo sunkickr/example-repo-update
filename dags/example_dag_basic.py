@@ -15,6 +15,7 @@ from airflow.decorators import dag, task # DAG and task decorators for interfaci
     # that tasks will not be run between January 1, 2021 and 30 mins ago. When turned on, this DAG's first
     # run will be for the next 30 mins, per the schedule_interval
     catchup=False,
+
     default_args={
         "retries": 2, # If a task fails, it will retry 2 times.
     },
