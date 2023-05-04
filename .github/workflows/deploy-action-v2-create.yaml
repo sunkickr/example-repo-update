@@ -18,5 +18,4 @@ jobs:
       uses: astronomer/deploy-action@v0.3
       with:
         action: create-deployment-preview
-        root-folder: new-project
         deployment-name: "test deployment"
