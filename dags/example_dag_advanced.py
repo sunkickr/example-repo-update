@@ -87,6 +87,7 @@ def _going_to_the_beach() -> Dict:
         "retries": 2, # If a task fails, it will retry 2 times.
         "retry_delay": timedelta(minutes=3), # A task that fails will wait 3 minutes to retry.
     },
+
     default_view="graph", # This defines the default view for this DAG in the Airflow UI
     # When catchup=False, your DAG will only run for the latest schedule interval. In this case, this means
     # that tasks will not be run between June 11, 2021 and 1 day ago. When turned on, this DAG's first run
