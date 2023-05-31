@@ -94,6 +94,7 @@ def _going_to_the_beach() -> Dict:
     catchup=False,
     tags=["example"], # If set, this tag is shown in the DAG view of the Airflow UI
 )
+
 def example_dag_advanced():
     # DummyOperator placeholder for first task
     begin = DummyOperator(task_id="begin")
