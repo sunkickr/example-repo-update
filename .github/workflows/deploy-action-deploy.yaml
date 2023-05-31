@@ -16,5 +16,4 @@ jobs:
     - name: Deploy to Deployment Preivew
       uses: astronomer/deploy-action@v0.3
       with:
-        action: deploy-deployment-preview
         deployment-name: "test deployment"
