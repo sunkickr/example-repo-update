@@ -13,7 +13,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-    - name: Deploy to Deployment Preivew
+    - name: Deploy to Deployment
       uses: astronomer/deploy-action@v0.3
       with:
         deployment-name: "test deployment"
