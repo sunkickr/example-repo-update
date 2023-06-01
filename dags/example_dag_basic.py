@@ -20,6 +20,7 @@ from airflow.decorators import dag, task # DAG and task decorators for interfaci
         "retries": 2, # If a task fails, it will retry 2 times.
     },
     tags=['example']) # If set, this tag is shown in the DAG view of the Airflow UI
+
 def example_dag_basic():
     """
     ### Basic ETL Dag
