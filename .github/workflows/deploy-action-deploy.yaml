@@ -18,4 +18,4 @@ jobs:
       with:
         deployment-name: "Development"
         pytest: true
-        pytest-file: /tests/
+        pytest-file: tests/
