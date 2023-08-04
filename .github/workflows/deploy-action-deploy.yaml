@@ -16,4 +16,6 @@ jobs:
     - name: Deploy to Deployment
       uses: astronomer/deploy-action@v0.2
       with:
-        deployment-name: "test deployment"
+        deployment-name: "Development"
+        pytest: true
+        pytest-file: /tests/
