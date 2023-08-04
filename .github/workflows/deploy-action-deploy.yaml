@@ -1,7 +1,7 @@
 name: Astronomer CI - Deploy code to Preview
 
 on:
-  pull_request:
+  push:
     branches:
       - main
 
