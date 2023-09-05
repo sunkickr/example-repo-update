@@ -1,4 +1,4 @@
-name: Astronomer CI - Deploy code to Preview
+name: Astronomer CI - Test Create
 
 on:
   pull_request:
@@ -13,10 +13,12 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+    - name: "Install Astro CLI"
+      shell: bash
+      run: |
+        curl -sSL https://install.astronomer.io | sudo bash -s -- v1.17.1
     - name: Deploy to Deployment
-      uses: astronomer/deploy-action@v0.2
-      with:
-        deployment-name: "Development"
-        pytest: true
-        pytest-file: /tests/
+      shell: bash
+      run: |
+        astro deployment create --deployment-file deployment.yaml
         

@@ -1,0 +1,23 @@
+deployment:
+    configuration:
+        name: "new deployment"
+        description: ""
+        runtime_version: 9.0.0
+        dag_deploy_enabled: true
+        ci_cd_enforcement: false
+        scheduler_size: small
+        is_high_availability: false
+        executor: CeleryExecutor
+        scheduler_au: 10
+        scheduler_count: 1
+        cluster_name: abella-test
+        workspace_name: kushal-test
+        deployment_type: HOSTED_DEDICATED
+        cloud_provider: aws
+        region: us-east-1
+    worker_queues:
+        - name: default
+          max_worker_count: 10
+          min_worker_count: 0
+          worker_concurrency: 5
+          worker_type: a5
