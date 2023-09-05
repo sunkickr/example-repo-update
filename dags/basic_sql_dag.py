@@ -8,6 +8,7 @@ from airflow.decorators import dag
 from astro import sql as aql
 from airflow.decorators import dag, task
 
+
 @aql.run_raw_sql(conn_id='david_snowflake')
 def run_sql():
     return """select * from REDDIT_AIRFLOW;
