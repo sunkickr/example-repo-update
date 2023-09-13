@@ -8,3 +8,4 @@ dag-deploy.sh
 deploy/
 deploy-action-v2/
 upgrade-test*
+include/credentials

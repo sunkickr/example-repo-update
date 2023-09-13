@@ -3,7 +3,7 @@ name: Astronomer CI - Delete Deployment Preview
 on:
   delete:
     branches:
-    - "**"
+    - '**'
     - '!main'
 
 env:
