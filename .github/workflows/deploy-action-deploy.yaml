@@ -22,5 +22,5 @@ jobs:
         curl -sSL https://install.astronomer.io | sudo bash -s v1.19.3
 
         # deploy code
-        astro deploy -n "test deployment"
+        astro deploy -n "test deployment" -f
 
