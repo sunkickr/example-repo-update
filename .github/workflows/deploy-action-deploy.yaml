@@ -13,14 +13,8 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-    - name: checkout repo
-      uses: actions/checkout@v3
     - name: Deploy to Deployment 
-      shell: bash
-      run: |
-        # install the Astro CLI
-        curl -sSL https://install.astronomer.io | sudo bash -s v1.19.4
-
-        # deploy code
-        astro deploy -n "test deployment" -f
-
+      uses: astronomer/deploy-action@v0.2.1
+      with:
+        cli-version: 1.21.0
+        deployment-name: "test"
