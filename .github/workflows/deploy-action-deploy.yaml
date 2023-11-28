@@ -16,5 +16,5 @@ jobs:
     - name: Deploy to Deployment 
       uses: astronomer/deploy-action@v0.2.1
       with:
-        cli-version: 1.21.0
+        cli-version: v1.21.0
         deployment-name: "test"
