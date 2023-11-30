@@ -9,6 +9,7 @@ from airflow.decorators import dag, task # DAG and task decorators for interfaci
     # will run daily
     schedule_interval="@daily",
     
+    
     # This DAG is set to run for the first time on January 1, 2021. Best practice is to use a static
     # start_date. Subsequent DAG runs are instantiated based on scheduler_interval
     start_date=datetime(2021, 1, 1),
