@@ -27,7 +27,6 @@ notebook_task = {
 # Define params for Run Now Operator
 notebook_params = {"Variable": 5}
 
-
 with DAG(
     "databricks_dag",
     start_date=datetime(2021, 1, 1),
