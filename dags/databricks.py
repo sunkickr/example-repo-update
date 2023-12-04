@@ -24,6 +24,7 @@ notebook_task = {
     "notebook_path": "/Users/ExampleUser/Quickstart_Notebook",
 }
 
+
 # Define params for Run Now Operator
 notebook_params = {"Variable": 5}
 
