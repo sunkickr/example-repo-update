@@ -14,8 +14,12 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-    - name: Create Deployment Preivew
-      uses: astronomer/deploy-action@v0.2
+    - name: Create Deployment Preview
+      uses: astronomer/deploy-action@v0.3
       with:
         action: create-deployment-preview
-        deployment-name: "test deployment"
+        deployment-name: "test"
+      id: create-dep-prev
+    - name: Create Secret Variables
+      run: |
+        astro deployment variable update --deployment-id ${{steps.create-dep-prev.outputs.preview-id}} AIRFLOW__SECRETS__BACKEND_KWARGS=${{ secrets.AIRFLOW__SECRETS__BACKEND_KWARGS }}
