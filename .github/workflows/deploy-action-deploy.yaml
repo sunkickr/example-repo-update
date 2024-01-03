@@ -17,4 +17,3 @@ jobs:
       uses: astronomer/deploy-action@v0.4
       with:
         deployment-name: "test"
-        checkout: true
