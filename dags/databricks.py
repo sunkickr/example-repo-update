@@ -13,6 +13,7 @@ from airflow.providers.databricks.operators.databricks import (
 )
 from datetime import datetime, timedelta
 
+
 # Define params for Submit Run Operator
 new_cluster = {
     "spark_version": "7.3.x-scala2.12",
