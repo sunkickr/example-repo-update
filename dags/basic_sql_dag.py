@@ -13,7 +13,6 @@ from airflow.decorators import dag, task
 def run_sql():
     return """select * from REDDIT_AIRFLOW;
     """
-
 @aql.run_raw_sql(conn_id='david_snowflake')
 def run_sql_2():
     return """select * from REDDIT_DATA;
