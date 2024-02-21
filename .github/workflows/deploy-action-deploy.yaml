@@ -13,9 +13,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+    # - name: Checkout code
+    #   uses: actions/checkout@v4
     - name: Deploy to Deployment 
       uses: astronomer/deploy-action@v0.5
-      with:
-        checkout: false
