@@ -15,7 +15,6 @@ jobs:
     steps:
     - name: checkout repo
       uses: actions/checkout@v4
-      if: inputs.checkout == true
       with:
         fetch-depth: 2
         clean: false
