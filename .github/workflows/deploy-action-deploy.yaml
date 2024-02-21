@@ -15,8 +15,6 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-      with:
-        ref: ${{ github.ref }}
     - name: Deploy to Deployment 
       uses: astronomer/deploy-action@v0.5
       with:
