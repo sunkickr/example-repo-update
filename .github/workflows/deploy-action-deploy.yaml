@@ -15,8 +15,8 @@ jobs:
     steps:
     - name: checkout repo
       uses: actions/checkout@v4
-      with:
-        fetch-depth: 2
-        clean: false
+      # with:
+      #   fetch-depth: 2
+      #   clean: false
     - name: Deploy to Deployment 
       uses: astronomer/deploy-action@v0.5
