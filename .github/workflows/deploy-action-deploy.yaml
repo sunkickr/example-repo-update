@@ -14,6 +14,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Deploy to Deployment 
-      uses: astronomer/deploy-action@v0.4
+      uses: astronomer/deploy-action@v0.5
       with:
         cli-version: v1.23.0
