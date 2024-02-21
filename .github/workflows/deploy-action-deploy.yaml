@@ -18,5 +18,11 @@ jobs:
       with:
         fetch-depth: 0  # Fetch all history
         clean: false
+    - name: Debug Output
+      run: |
+        git branch -a
+        git log --oneline -5
+        git fetch origin main
+        git diff origin/main..HEAD
     - name: Deploy to Deployment 
       uses: astronomer/deploy-action@v0.5
