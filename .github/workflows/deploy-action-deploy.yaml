@@ -24,5 +24,7 @@ jobs:
         git log --oneline -5
         git fetch origin main
         git diff origin/main..HEAD
+        git diff --name-only ${{ github.event.before }} ${{ github.event.after }}
+        git diff --name-only HEAD^..HEAD
     - name: Deploy to Deployment 
       uses: astronomer/deploy-action@v0.5
