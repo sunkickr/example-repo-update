@@ -13,17 +13,5 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-    - name: checkout repo
-      uses: actions/checkout@v4
-      with:
-        fetch-depth: 0  # Fetch all history
-        ref: ${{ github.event.before }} 
-        clean: false
-    - name: Debug Output
-      run: |
-        git branch -a
-        git log --oneline -5
-        git fetch origin main
-        git diff --name-only ${{ github.event.before }} ${{ github.event.after }}
     - name: Deploy to Deployment 
       uses: astronomer/deploy-action@v0.5
