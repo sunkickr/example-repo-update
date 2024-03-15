@@ -12,4 +12,4 @@ jobs:
       - name: Deploy Requirements.txt, DAG, includes and plugins to Astro
         uses: astronomer/deploy-action@v0.5
         with:
-          deployment-name: keyvault-test
+          deployment-name: david test
