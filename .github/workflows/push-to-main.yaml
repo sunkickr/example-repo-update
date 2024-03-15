@@ -14,7 +14,7 @@ jobs:
         if: ${{ inputs.checkout }} == true
         with:
           fetch-depth: 0  # Fetch all history
-          ref: ${{ github.event.after }} 
+          ref: ${{ github.event.after }}
           clean: false
       - name: Deploy Requirements.txt, DAG, includes and plugins to Astro
         uses: astronomer/deploy-action@v0.5
