@@ -1,0 +1,13 @@
+name: Deploy (checkdeployaction)
+on:
+  pull_request:
+    branches:
+      - main
+jobs:
+  prod-astronomer:
+    env:
+      ASTRO_API_TOKEN: ${{ secrets.ASTRO_API_TOKEN }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: my-step
+        run: echo "Hello World!"

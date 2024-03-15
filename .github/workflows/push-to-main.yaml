@@ -1,0 +1,15 @@
+name: Deploy (checkdeployaction)
+on:
+  push:
+    branches:
+      - main
+jobs:
+  prod-astronomer:
+    env:
+      ASTRO_API_TOKEN: ${{ secrets.ASTRO_API_TOKEN }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy Requirements.txt, DAG, includes and plugins to Astro
+        uses: astronomer/deploy-action@v0.5
+        with:
+          deployment-name: keyvault-test
