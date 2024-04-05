@@ -4,7 +4,7 @@ on:
     branches:
       - main
 jobs:
-  prod-astronomer:
+  deploy:
     env:
       ASTRO_API_TOKEN: ${{ secrets.ASTRO_API_TOKEN }}
     runs-on: ubuntu-latest
