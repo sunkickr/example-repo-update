@@ -59,6 +59,7 @@ BranchDayOfWeekOperator -
 
     See more info about this operator here:
         https://registry.astronomer.io/providers/apache-airflow/modules/branchdayofweekoperator
+update dag
 """
 
 @task(multiple_outputs=True) # multiple_outputs=True unrolls dictionaries into separate XCom values
