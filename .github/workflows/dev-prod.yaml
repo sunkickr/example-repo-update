@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Deploy to Astro
-      uses: astronomer/deploy-action@v0.5
+      uses: astronomer/deploy-action@v0.6
       with:
         deployment-name: dev
   prod-push:
@@ -24,6 +24,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Deploy to Astro
-      uses: astronomer/deploy-action@v0.5
+      uses: astronomer/deploy-action@v0.6
       with:
         deployment-name: prod
