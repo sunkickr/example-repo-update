@@ -18,6 +18,7 @@ def run_sql_2():
     return """select * from REDDIT_DATA;
     """
 
+
 @task()
 def basic_python():
     """
