@@ -12,4 +12,4 @@ jobs:
       - name: Deploy to prod
         uses: astronomer/deploy-action@feature/wake-up-dev-deployment
         with:
-          deployment-name: prod
+          deployment-name: dev
