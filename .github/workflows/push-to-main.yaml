@@ -10,6 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Deploy to prod
-        uses: astronomer/deploy-action@feature/wake-up-dev-deployment
+        uses: astronomer/deploy-action@feature/wake-up-
         with:
           deployment-name: prod
