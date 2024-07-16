@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Create Deployment Preview
-      uses: astronomer/deploy-action@feature/wake-up-dev-deployment
+      uses: astronomer/deploy-action@feature/wake-up-
       with:
         action: create-deployment-preview
         deployment-name: prod
