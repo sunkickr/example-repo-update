@@ -9,6 +9,8 @@ jobs:
       ASTRO_API_TOKEN: ${{ secrets.ASTRO_API_TOKEN }}
     runs-on: ubuntu-latest
     steps:
+      - name: Print GITHUB_ACTIONS env var
+        run: echo "GITHUB_ACTIONS=${GITHUB_ACTIONS}"
       - name: Deploy to prod
         uses: astronomer/deploy-action@feature/wake-up-dev-deployment
         with:
