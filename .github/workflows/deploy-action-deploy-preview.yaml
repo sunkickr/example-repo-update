@@ -14,6 +14,8 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+    - name: Print GITHUB_ACTIONS env var
+      run: echo "GITHUB_ACTIONS=${GITHUB_ACTIONS}"
     - name: Deploy to Deployment Preivew
       uses: astronomer/deploy-action@v0.6
       with:
