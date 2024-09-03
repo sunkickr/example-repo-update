@@ -19,7 +19,7 @@ jobs:
       - name: Deploy to Deployment Preivew
         uses: astronomer/deploy-action@dbt-deploy
         with:
-          action: deploy-deployment-preview
+          action: dbt-deploy-deployment-preview
           deployment-name: neel-test-1
           root-folder: dbt/
           mount-path: /dbt
