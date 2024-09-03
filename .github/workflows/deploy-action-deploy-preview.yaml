@@ -1,4 +1,4 @@
-name: Astronomer CI - Deploy code to Preview
+name: Deploy code to Preview
 
 on:
   push:

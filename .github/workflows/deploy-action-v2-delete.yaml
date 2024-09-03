@@ -1,4 +1,4 @@
-name: Astronomer CI - Delete Deployment Preview
+name: Delete Deployment Preview
 
 on:
   delete:

@@ -1,4 +1,4 @@
-name: Astronomer CI - Create deployment preview
+name: Create deployment preview
 
 on:
   create:
