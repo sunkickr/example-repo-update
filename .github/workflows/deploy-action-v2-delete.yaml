@@ -5,6 +5,7 @@ on:
     branches:
       - "**"
       - "!main"
+  workflow_dispatch:
 
 env:
   ## Sets Deployment API key credentials as environment variables
