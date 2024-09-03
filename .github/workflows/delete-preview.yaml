@@ -1,4 +1,4 @@
-name: Delete Deployment Preview
+name: Delete Deployment Preview 2
 
 on:
   delete:

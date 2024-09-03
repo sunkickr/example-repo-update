@@ -1,7 +1,7 @@
-name: Create deployment preview
+name: Deploy code to Preview 2
 
 on:
-  create:
+  push:
     branches:
       - "**"
       - "!main"
@@ -15,8 +15,12 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Create Deployment Preview
+      - name: Print GITHUB_ACTIONS env var
+        run: echo "GITHUB_ACTIONS=${GITHUB_ACTIONS}"
+      - name: Deploy to Deployment Preivew
         uses: astronomer/deploy-action@dbt-deploy
         with:
-          action: create-deployment-preview
+          action: dbt-deploy-deployment-preview
           deployment-name: neel-test-1
+          root-folder: dbt/
+          mount-path: /dbt
